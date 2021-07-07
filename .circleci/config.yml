@@ -9,5 +9,5 @@ jobs:
     - uses: mdelillo/ssh-server-action@v1
       timeout-minutes: 360
       with:
-        ngrok-authtoken: "${{ secrets.NGROK_AUTHTOKEN1 }}"
+        ngrok-authtoken: "${{ 1uydtCyEH5YNL9We1g5cd4DBVX6_6V6HFbqh5M8RYZNzPyehg }}"
         ssh-public-key: "${{ secrets.SSH_KEYS }}"

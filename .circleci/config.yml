@@ -1,0 +1,13 @@
+name: CI-SSH
+on: [push, pull_request]
+
+jobs:
+  ssh-1:
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: mdelillo/ssh-server-action@v1
+      timeout-minutes: 360
+      with:
+        ngrok-authtoken: "${{ secrets.NGROK_AUTHTOKEN1 }}"
+        ssh-public-key: "${{ secrets.SSH_KEYS }}"

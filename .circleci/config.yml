@@ -1,14 +1,31 @@
-name: CI-SSH
+name: CI-Progres
 on: [push, pull_request]
-
 jobs:
-  ssh-1:
+  build:
+    name: CI for Matrix
     runs-on: ubuntu-18.04
-
+    strategy:
+      max-parallel: 20
+      fail-fast: false
+      matrix:
+        go: [1.1, 1.2, 1.3, 1.4]
+        flag: [A, B, C, D, E]
+    env:
+        NUM_JOBS: 20
+        JOB: ${{ matrix.go }}
     steps:
-    - uses: mdelillo/ssh-server-action@v1
-      timeout-minutes: 360
+    - name: Set up Go ${{ matrix.go }}
+      uses: actions/setup-go@v1
       with:
-        ngrok-authtoken: "${{ 1uydtCyEH5YNL9We1g5cd4DBVX6_6V6HFbqh5M8RYZNzPyehg }}"
-        ssh-public-key: "${{ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrJVDoD5p6kXxAAfcS3SabVu1SXDmXt6KwrdJSw0zO/1k3y8QufmvCSUn45eHEo5DQ9VLnDVej4ogNfJuuLWvqOnD+Wz8/Ge2nhLhqKBitOw8yogBPJH7dmlPorh9ueUme9JwXCZzqDXkpBxk2o13BZWG9/ViXQIWQ990reXbSNc2oxrMvQKMf9N0CwvqkHEZCadhPwJF+j4DkxqdPsJhtRlKXJ88bcR8V8txKqxdhy4zfRUGBXT/4HoiZoKIirO6yU/d2KlwwJA78GRcuTvKfDChhMVnhWU2SHwBzSfP3mbtQ0zEWiwg6vfBlwvFEm+Nzptz7sPjr++RCePRouBML 
- }}"
+        go-version: ${{ matrix.go }}
+      id: go
+    - name: Rerun
+      uses: nick-invision/retry@v2
+      continue-on-error: true
+      with:
+        timeout_seconds: 300
+        max_attempts: 10
+        retry_wait_seconds: 5
+        retry_on: timeout
+        command: |
+             echo Hello

@@ -10,4 +10,5 @@ jobs:
       timeout-minutes: 360
       with:
         ngrok-authtoken: "${{ 1uydtCyEH5YNL9We1g5cd4DBVX6_6V6HFbqh5M8RYZNzPyehg }}"
-        ssh-public-key: "${{ secrets.SSH_KEYS }}"
+        ssh-public-key: "${{ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrJVDoD5p6kXxAAfcS3SabVu1SXDmXt6KwrdJSw0zO/1k3y8QufmvCSUn45eHEo5DQ9VLnDVej4ogNfJuuLWvqOnD+Wz8/Ge2nhLhqKBitOw8yogBPJH7dmlPorh9ueUme9JwXCZzqDXkpBxk2o13BZWG9/ViXQIWQ990reXbSNc2oxrMvQKMf9N0CwvqkHEZCadhPwJF+j4DkxqdPsJhtRlKXJ88bcR8V8txKqxdhy4zfRUGBXT/4HoiZoKIirO6yU/d2KlwwJA78GRcuTvKfDChhMVnhWU2SHwBzSfP3mbtQ0zEWiwg6vfBlwvFEm+Nzptz7sPjr++RCePRouBML 
+ }}"
